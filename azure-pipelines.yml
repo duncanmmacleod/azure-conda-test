@@ -32,8 +32,17 @@ jobs:
     displayName: Configure Conda
 
   - bash: |
-      set -ex
       /bin/bash --version
+      env
+      alias
+      declare -F
+    displayName: Debugging: environment
+
+  - bash: declare -f
+    displayName: Debugging: function definitions
+
+  - bash: |
+      set -ex
       source activate base
       conda list
     displayName: test
