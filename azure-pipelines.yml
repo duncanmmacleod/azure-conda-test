@@ -36,10 +36,10 @@ jobs:
       env
       alias
       declare -F
-    displayName: Debugging: environment
+    displayName: "Debugging: environment"
 
   - bash: declare -f
-    displayName: Debugging: function definitions
+    displayName: "Debugging: function definitions"
 
   - bash: |
       set -ex
