@@ -33,6 +33,7 @@ jobs:
 
   - bash: |
       set -ex
+      /bin/bash --version
       source activate base
       conda list
     displayName: test
