@@ -27,6 +27,8 @@ jobs:
       conda config --prepend channels conda-forge
       conda update --yes --quiet --name base conda
       conda info --all
+      conda config --show-sources
+      conda list --show-channel-urls
     displayName: Configure Conda
 
   - bash: |
