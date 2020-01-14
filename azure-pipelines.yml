@@ -42,7 +42,12 @@ jobs:
     displayName: "Debugging: function definitions"
 
   - bash: |
+        type __add_sys_prefix_to_path
+        type __conda_activate
+    displayName: "Debugging: function definitions"
+
+  - bash: |
       set -ex
-      source activate base
+      conda activate base
       conda list
     displayName: test
