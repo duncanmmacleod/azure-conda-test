@@ -21,16 +21,18 @@ jobs:
   #      conda | "$(Agent.OS)"
   #  displayName: Cache Conda packages
 
-  - bash: |
-      set -ex
-      echo "##vso[task.prependpath]$CONDA/bin"
-      conda config --set always_yes yes
-      conda config --add channels conda-forge
-      conda update --yes --quiet --name base conda
-      conda info --all
-      conda config --show-sources
-      conda list --show-channel-urls
-    displayName: Configure Conda
+  - bash: echo "##vso[task.prependpath]$CONDA/bin"
+    displayName: Add conda to PATH
+
+  #- bash: |
+  #    set -ex
+  #    conda config --set always_yes yes
+  #    conda config --add channels conda-forge
+  #    conda update --yes --quiet --name base conda
+  #    conda info --all
+  #    conda config --show-sources
+  #    conda list --show-channel-urls
+  #  displayName: Configure Conda
 
   - bash: |
       /bin/bash --version
@@ -50,7 +52,7 @@ jobs:
 
   - bash: |
       set -ex
-      source ${CONDA}/etc/profile.d/conda.sh
-      conda activate base
+      #source ${CONDA}/etc/profile.d/conda.sh
+      #conda activate base
       conda list
     displayName: test
