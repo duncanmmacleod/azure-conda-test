@@ -11,20 +11,20 @@ jobs:
   variables:
     CONDA_PKGS_DIRS: $(Pipeline.Workspace)/.conda/pkgs
 
-  steps:
-  - task: Cache@2
-    inputs:
-      key: 'conda | "$(Agent.OS)" | "python$(python.version)"'
-      path: $(CONDA_PKGS_DIRS)
-      restoreKeys: |
-        conda | "$(Agent.OS)"
-    displayName: Cache Conda packages
+  #steps:
+  #- task: Cache@2
+  #  inputs:
+  #    key: 'conda | "$(Agent.OS)" | "python$(python.version)"'
+  #    path: $(CONDA_PKGS_DIRS)
+  #    restoreKeys: |
+  #      conda | "$(Agent.OS)"
+  #  displayName: Cache Conda packages
 
   - bash: |
       set -ex
       echo "##vso[task.prependpath]$CONDA/bin"
       conda config --set always_yes yes
-      conda config --prepend channels conda-forge
+      conda config --add channels conda-forge
       conda update --yes --quiet --name base conda
       conda info --all
       conda config --show-sources
