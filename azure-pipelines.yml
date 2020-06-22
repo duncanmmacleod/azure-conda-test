@@ -33,9 +33,10 @@ jobs:
     displayName: Configure Conda
 
   - bash: |
-      conda create --name test --yes
-          python=3.8
-          gwpy
+      conda create --name test --yes \
+          python=3.8 \
+          gwpy \
+      ;
     displayName: "Create environment"
 
   - bash: |
