@@ -40,6 +40,6 @@ jobs:
     displayName: "Create environment"
 
   - bash: |
-      conda activate test
+      source activate test
       conda list
     displayName: test
