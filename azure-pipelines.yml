@@ -13,13 +13,13 @@ jobs:
 
   steps:
 
-  #- task: Cache@2
-  #  inputs:
-  #    key: 'conda | "$(Agent.OS)" | "python$(python.version)"'
-  #    path: $(CONDA_PKGS_DIRS)
-  #    restoreKeys: |
-  #      conda | "$(Agent.OS)"
-  #  displayName: Cache Conda packages
+  - task: Cache@2
+    inputs:
+      key: 'conda | "$(Agent.OS)" | "python$(python.version)"'
+      path: $(CONDA_PKGS_DIRS)
+      restoreKeys: |
+        conda | "$(Agent.OS)"
+    displayName: Cache Conda packages
 
   - bash: echo "##vso[task.prependpath]$CONDA/bin"
     displayName: Add conda to PATH
@@ -33,27 +33,12 @@ jobs:
     displayName: Configure Conda
 
   - bash: |
-      /bin/bash --version
-      env
-      alias
-      declare -F
-    displayName: "Debugging: environment"
-
-  - bash: declare -f
-    displayName: "Debugging: function definitions"
-
-  - bash: |
-        source ${CONDA}/etc/profile.d/conda.sh
-        type __add_sys_prefix_to_path
-        type __conda_activate
-    displayName: "Debugging: function definitions"
-
-  - bash: conda create --name test --yes python=3.8 gwpy
+      conda create --name test --yes
+          python=3.8
+          gwpy
     displayName: "Create environment"
 
   - bash: |
-      set -ex
-      #source ${CONDA}/etc/profile.d/conda.sh
-      #conda activate base
+      conda activate test
       conda list
     displayName: test
