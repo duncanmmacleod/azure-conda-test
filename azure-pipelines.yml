@@ -50,6 +50,9 @@ jobs:
         type __conda_activate
     displayName: "Debugging: function definitions"
 
+  - bash: conda create --name test --yes python=3.8 gwpy
+    displayName: "Create environment"
+
   - bash: |
       set -ex
       #source ${CONDA}/etc/profile.d/conda.sh
